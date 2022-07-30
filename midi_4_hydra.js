@@ -17,8 +17,8 @@ function onMIDIFailure() {
 
 //create an array to hold our cc values and init to a normalized value
 var cc=Array(128).fill(0.5)
-//create an array to hold our channel specific cc values and init to a normalized value
 var cc2 =Array(177).fill(null).map(()=>Array(128).fill(0.5))
+var cc3 =Array(177).fill(null).map(()=>Array(128).fill(0.5))
 console.log(cc)
 console.log(cc2)  
 getMIDIMessage = function(midiMessage) {
@@ -27,6 +27,10 @@ getMIDIMessage = function(midiMessage) {
     var index = arr[1]
     console.log('Midi received on channel# '+chan+' cc#' + index + ' value:' + arr[2])    // uncomment to monitor incoming Midi
     var val = (arr[2]+1)/128.0  // normalize CC values to 0.0 - 1.0
-    cc2[chan][index]=val  
-console.log(cc2[chan][index])
+    cc[index]=val
+    cc2[chan][index]=val
+    cc3[chan]=index
+  console.log(cc[index])
+ console.log(cc2[chan][index])
+ console.log(cc3[chan])
 }

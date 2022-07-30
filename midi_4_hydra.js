@@ -7,7 +7,7 @@ function onMIDISuccess(midiAccess) {
     var inputs = midiAccess.inputs;
     var outputs = midiAccess.outputs;
     for (var input of midiAccess.inputs.values()){
-        input.onmidimessage = getMIDIMessage;
+input.onmidimessage = getMIDIMessage;
     }
 }
 
@@ -19,18 +19,16 @@ function onMIDIFailure() {
 var cc=Array(128).fill(0.5)
 var cc2 =Array(177).fill(null).map(()=>Array(128).fill(0.5))
 var cc3 =Array(177).fill(null).map(()=>Array(128).fill(0.5))
-console.log(cc)
-console.log(cc2)  
 getMIDIMessage = function(midiMessage) {
     var arr = midiMessage.data
     var chan = arr[0]  
     var index = arr[1]
-    console.log('Midi received on channel# '+chan+' cc#' + index + ' value:' + arr[2])    // uncomment to monitor incoming Midi
+//     console.log('Midi received on channel# '+chan+' cc#' + index + ' value:' + arr[2])    // uncomment to monitor incoming Midi
     var val = (arr[2]+1)/128.0  // normalize CC values to 0.0 - 1.0
     cc[index]=val
     cc2[chan][index]=val
     cc3[chan]=index
-  console.log(cc[index])
- console.log(cc2[chan][index])
- console.log(cc3[chan])
+//   console.log("cc: "+cc[index])
+//  console.log("cc2: "+cc2[chan][index])
+//  console.log("cc3: "+cc3[chan])
 }
